@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="en">
+
+  <head>
+
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="RY Learn" content="">
+    <meta name="Stanley" content="">
+
+    <title>RY Learn</title>
+
+    <!-- Bootstrap core CSS -->
+    <link href="vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" type="text/css" href="design.css">
+    <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+  </head>
+
+  <body>
+
+    <!-- Navigation -->
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark static-top">
+      <div class="container">
+        <a class="css-159p4b8" href="index.html">RY Learn</a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
+          <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarResponsive">
+          <ul class="navbar-nav ml-auto">
+            <li class="nav-item">
+              <a class="nav-link" href="index.html">Home
+              </a>
+            </li>
+            <li class="nav-item active">
+              <a class="nav-link" href="algorithms.html">Algorithms
+                <span class="sr-only">(current)</span>
+              </a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="artificial_intelligence.html">Artificial Intelligence</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="machine_learning.html">Machine Learning</a>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </nav>
+  
+<div class="w3-main">
+
+<div class="w3-row w3-padding-32">
+<h2>Binary Search</h2>
+
+<div class="w3-row w3-border">
+    <p>If you have a sorted list, one way to search for an element is by checking the middle element. If the middle element is larger than the desired element, you only search the first half. If not, you search the last half. The average run-time for binary search is O(log n).</p>
+    <h4>Python</h4>  
+    <div class="w3-panel w3-card w3-light-grey">
+      <div class="w3-code notranslate">
+        <pre class="prettyprint lang-python">
+          def is_sorted(A):
+            for i in range(len(A)-1):
+              if A[i+1] < A[i]:
+                return False
+            return True
+
+          # returns index of target
+          def binary_search(A, target_value, n):
+            if not is_sorted(A):
+              print("Not sorted")
+              return None
+            L = 0
+            R = n - 1
+            while L <= R:
+              mid = (L + R) // 2  # using floor division
+              if A[m] < target_value:
+                L = mid + 1
+              elif A[m] > target_value:
+                R = mid - 1
+              else: # equality
+                return mid
+
+          test_list = [34, 2, 23, 12]
+          test_list = sorted(test_list)
+          print(binary_search(test_list, 34, 
+              len(test_list)))
+        </pre>
+      </div>
+    </div>
+</div>
+
+</div>
+</div>
+
+<script src="https://cdn.rawgit.com/google/code-prettify/master/loader/run_prettify.js"></script>
+<!-- Bootstrap core JavaScript -->
+<script src="vendor/jquery/jquery.min.js"></script>
+<script src="vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+
+</body>
+
+</html>

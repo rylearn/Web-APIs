@@ -1,0 +1,205 @@
+<!DOCTYPE html>
+<html lang="en">
+
+  <head>
+
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="RY Learn" content="">
+    <meta name="Stanley" content="">
+
+    <title>RY Learn</title>
+
+    <!-- Bootstrap core CSS -->
+    <link href="vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" type="text/css" href="design.css">
+  </head>
+
+  <body>
+
+    <!-- Navigation -->
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark static-top">
+      <div class="container">
+        <a class="css-159p4b8" href="index.html">RY Learn</a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
+          <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarResponsive">
+          <ul class="navbar-nav ml-auto">
+            <li class="nav-item">
+              <a class="nav-link" href="index.html">Home
+              </a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="algorithms.html">Algorithms</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="artificial_intelligence.html">Artificial Intelligence</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link active" href="#">Machine Learning
+                <span class="sr-only">(current)</span>
+              </a>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </nav>
+
+    <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+
+<style>
+span.kwd {
+  color: blue;
+}
+span.fn_names {
+  color: red;
+}
+span.comments {
+  color: green;
+}
+span.variables {
+  color: brown;
+}
+</style>
+
+<body class="w3-container">
+
+<h2>Building deep learning networks with Keras</h2>
+
+<div class="w3-row w3-border">
+  <div class="w3-half w3-container w3-theme">
+    <h3>Import keras</h3>  
+    <p>Let's solve a typical classification problem in Keras: 
+  given an image, predict which class it belongs to.</p>
+  <p>We will use Keras to build a sequential model of neural nets.</p>
+  </div>
+  <div class="w3-half w3-container">
+    <div class="w3-panel w3-card w3-light-grey">
+    <div class="w3-code notranslate">
+    <span class="kwd">import</span> keras<br>
+    <span class="kwd">from</span> keras.datasets <span class="kwd">import</span> mnist<br>
+    <span class="kwd">from</span> keras.models <span class="kwd">import</span> Sequential<br>
+    <span class="kwd">from</span> keras.layers <span class="kwd">import</span> Dense, Dropout, Flatten<br>
+    <span class="kwd">from</span> keras.layers <span class="kwd">import</span> Conv2D, MaxPooling2D<br>
+    <span class="kwd">from</span> keras <span class="kwd">import</span> backend as K<br>
+    </div>
+  </div>  
+  </div>
+</div>
+
+<div class="w3-row w3-border">
+  <div class="w3-half w3-container w3-theme">
+    <h3>Hyperparameters and relevant variables</h3>
+    <p>For convenience, define variables for the input image size and 
+    other hyperparameters that will be used to train the model.</p>
+  </div>
+  <div class="w3-half w3-container">
+    <div class="w3-panel w3-card w3-light-grey">
+      <div class="w3-code notranslate">
+      <span class="variables">num_classes</span> = 10<br>
+      <span class="variables">img_rows</span>, <span class="variables">img_cols</span> = 28, 28<br>
+      <span class="variables">batch_size</span> = 128<br>
+      <span class="variables">epochs</span> = 15<br>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="w3-row w3-border">
+  <div class="w3-half w3-container w3-theme">
+    <h3>Pre-process the data</h3>
+    <p>The next step is to pre-process the data and to split it into a train, validation, and test set.</p>
+  </div>
+  <div class="w3-half w3-container">
+    <div class="w3-panel w3-card w3-light-grey">
+      <div class="w3-code notranslate">
+      (<span class="variables">x_train</span>, <span class="variables">y_train</span>), (<span class="variables">x_test</span>, <span class="variables">y_test</span>) = mnist.<span class="fn_names">load_data()</span><br>
+      <br>
+      <span class="variables">x_train</span> = <span class="variables">x_train</span>.<span class="fn_names">reshape(</span><span class="variables">x_train</span>.shape[0], <span class="variables">img_rows</span>, <span class="variables">img_cols</span>, 1<span class="fn_names">)</span><br>
+      <span class="variables">x_test</span> = <span class="variables">x_test</span>.<span class="fn_names">reshape(</span><span class="variables">x_test</span>.shape[0], <span class="variables">img_rows</span>, <span class="variables">img_cols</span>, 1<span class="fn_names">)</span><br>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="w3-row w3-border">
+  <div class="w3-half w3-container w3-theme">
+    <h3>Modify the output labels</h3>
+    <p>Change the labels so that they are zeros and ones for faster processing.</p>
+  </div>
+  <div class="w3-half w3-container">
+    <div class="w3-panel w3-card w3-light-grey">
+      <div class="w3-code notranslate">
+      y_train = keras.utils.<span class="fn_names">to_categorical(</span>y_train, num_classes)<br>
+      y_test = keras.utils.<span class="fn_names">to_categorical(</span>y_test, num_classes)<br>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="w3-row w3-border">
+  <div class="w3-half w3-container w3-theme">
+    <h3>Setup the model</h3>
+    <p>Then, setup the model. 
+    In this example, we use two convolutional layers followed by a max pool layer. 
+    This is then followed by dropout to prevent the model from overfitting to the data.
+    The output from the 2D layers are flattened to a fully connected network and then reduced again to the number of output classes.</p>
+  </div>
+  <div class="w3-half w3-container">
+    <div class="w3-panel w3-card w3-light-grey">
+      <div class="w3-code notranslate">
+        <span class="variables">input_shape</span> = (<span class="variables">img_rows</span>, <span class="variables">img_cols</span>, 1)<br>
+        model = <span class="fn_names">Sequential()</span><br>
+        model.<span class="fn_names">add(Conv2D(</span>32, kernel_size=(3, 3),<br>
+                 &nbsp;&nbsp;&nbsp;&nbsp; 
+                 activation='relu',<br>
+                 &nbsp;&nbsp;&nbsp;&nbsp; 
+                 input_shape=<span class="variables">input_shape</span><span class="fn_names">))</span><br>
+        model.<span class="fn_names">add(Conv2D(</span>64, (3, 3), activation='relu'<span class="fn_names">))</span><br>
+        model.<span class="fn_names">add(MaxPooling2D(</span>pool_size=(2, 2)<span class="fn_names">))</span><br>
+        model.<span class="fn_names">add(Dropout(</span>0.25<span class="fn_names">))</span><br>
+        model.<span class="fn_names">add(Flatten())</span><br>
+        model.<span class="fn_names">add(Dense(</span>128, activation='relu'<span class="fn_names">))</span><br>
+        model.<span class="fn_names">add(Dropout(</span>0.25<span class="fn_names">))</span><br>
+        model.<span class="fn_names">add(Dense(</span><span class="variables">num_classes</span>, activation='softmax'<span class="fn_names">))</span><br>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="w3-row w3-border">
+  <div class="w3-half w3-container w3-theme">
+  <h3>Train the model</h3>
+    <p>Before training the model using your data, assign a loss, such as cross entropy, and an optimization method, such as the Adam optimizer. 
+    Then, fit the model as shown below. Print the test loss and accuracy. Loss should go down, while accuracy should improve. </p>
+  </div>
+  <div class="w3-half w3-container">
+    <div class="w3-panel w3-card w3-light-grey">
+      <div class="w3-code notranslate">
+      model.<span class="fn_names">compile(</span>loss = keras.losses.categorical_crossentropy,<br>
+              &nbsp;&nbsp;&nbsp;&nbsp; 
+              optimizer = keras.optimizers.Adam(),<br>
+              &nbsp;&nbsp;&nbsp;&nbsp; 
+              metrics = ['accuracy']<span class="fn_names">)</span><br>
+
+      model.<span class="fn_names">fit(</span><span class="variables">x_train</span>, <span class="variables">y_train</span>,<br>
+            &nbsp;&nbsp;&nbsp;&nbsp; 
+            batch_size = <span class="variables">batch_size</span>,<br>
+            &nbsp;&nbsp;&nbsp;&nbsp; 
+            epochs = <span class="variables">epochs</span>,<br>
+            &nbsp;&nbsp;&nbsp;&nbsp; 
+            verbose = True,<br>
+            &nbsp;&nbsp;&nbsp;&nbsp; 
+            validation_data = (<span class="variables">x_test</span>, <span class="variables">y_test</span>)<span class="fn_names">)</span><br>
+      <span class="variables">score</span> = model.<span class="fn_names">evaluate(</span><span class="variables">x_test</span>, <span class="variables">y_test</span>, verbose=0<span class="fn_names">)</span><br>
+      </div>
+    </div>
+  </div>
+</div>
+
+<p>The full code for the tutorial is linked in the <a href="https://github.com/rylearn/neural_nets/blob/master/keras_mnist.py">Github page</a>. Try adjusting the hyperparameters to determine how they influence accuracy.</p>
+
+</body>
+
+</html>

@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+
+  <head>
+
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="RY Learn" content="">
+    <meta name="Stanley" content="">
+
+    <title>Artificial Intelligence</title>
+
+    <!-- Bootstrap core CSS -->
+    <link href="vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" type="text/css" href="design.css">
+    <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+  </head>
+
+  <body>
+
+    <!-- Navigation -->
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark static-top">
+      <div class="container">
+        <a class="css-159p4b8" href="index.html">RY Learn</a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
+          <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarResponsive">
+          <ul class="navbar-nav ml-auto">
+            <li class="nav-item">
+              <a class="nav-link" href="index.html">Home
+              </a>
+            </li>
+            <li class="nav-item active">
+              <a class="nav-link" href="algorithms.html">Algorithms
+                <span class="sr-only">(current)</span>
+              </a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="artificial_intelligence.html">Artificial Intelligence</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="machine_learning.html">Machine Learning</a>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </nav>
+  
+<div class="w3-main">
+
+<div class="w3-row w3-padding-32">
+<h2>Linear Approximation with Q-learning</h2>
+
+<div class="w3-row w3-border">
+    <p>Many decision-based problems can be mapped to a set of states and actions. The Q-learning algorithm can be applied to assign values to state-action pairs. The main idea is to explore actions based on Q and an exploration strategy and using the new state and obtained reward to update the Q values. The update equation is Q(s_t, a_t) = Q(s_t, a_t) + alpha (r_t + gamma max_a Q(s_{t+1}, a) - Q(s_t, a_t)). Linear approximation can be used to approximate states that are not visited previously. Below is the general code structure.</p>
+    <h4>Python</h4>  
+    <div class="w3-panel w3-card w3-light-grey">
+      <div class="w3-code notranslate">
+        <pre class="prettyprint lang-python">
+          def LinearApproximationQLearning(initial_state, iters = 10000):
+            t = 0
+            s0 = initial_state
+            n = s0.size
+            theta = np.zeros(n)
+            for i in range(iters):
+              s_t_new, r_t = simulate(a_t)
+              theta = theta + alpha * (r_t + 
+                gamma * max(np.dot(theta, beta_func(s_t_new, a)) - np.dot(theta, beta_func(s_t, a_t)))) * beta_func(s_t, a_t)
+
+        </pre>
+      </div>
+    </div>
+</div>
+
+</div>
+</div>
+
+<script src="https://cdn.rawgit.com/google/code-prettify/master/loader/run_prettify.js"></script>
+<!-- Bootstrap core JavaScript -->
+<script src="vendor/jquery/jquery.min.js"></script>
+<script src="vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+
+</body>
+
+</html>
